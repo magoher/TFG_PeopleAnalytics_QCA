@@ -92,7 +92,7 @@ def show():
     outcome = st.session_state["outcome"]
     
     # Summary
-    st.subheader("📋 Data Summary")
+    st.subheader("Data Summary")
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Rows", df.shape[0])
@@ -102,7 +102,7 @@ def show():
         st.metric("Conditions", len(conditions))
     
     # Quick data view
-    with st.expander("📄 View Data"):
+    with st.expander("View Data"):
         st.dataframe(df.head())
     
     st.divider()
@@ -110,7 +110,7 @@ def show():
     # ============================================
     # OUTCOME CALIBRATION (CORREGIDO)
     # ============================================
-    st.subheader("🎯 Outcome Calibration")
+    st.subheader("Outcome Calibration")
     
     outcome_series = df[outcome]
     is_numeric = pd.api.types.is_numeric_dtype(outcome_series)
@@ -322,12 +322,12 @@ def show():
     # ============================================
     # FINAL ACTIONS
     # ============================================
-    st.subheader("💾 Save Calibration")
+    st.subheader("Save Calibration")
     
     col_save, col_export, col_reset = st.columns(3)
     
     with col_save:
-        if st.button("💾 Apply Calibration", type="primary", use_container_width=True):
+        if st.button("Apply Calibration", type="primary", use_container_width=True):
             # Create calibrated DataFrame
             calibrated_df = pd.DataFrame(calibrated_columns, index=df.index)
             
@@ -342,11 +342,11 @@ def show():
             st.session_state["calibrated_df"] = calibrated_df
             st.session_state["calibration_config"] = calibration_config
             
-            st.success("✅ Calibration applied successfully")
+            st.success("Calibration applied successfully")
             st.balloons()
     
     with col_export:
-        if st.button("📥 Export Configuration", use_container_width=True):
+        if st.button("Export Configuration", use_container_width=True):
             json_str = json.dumps(calibration_config, indent=2, ensure_ascii=False)
             st.download_button(
                 "Download JSON",
@@ -356,7 +356,7 @@ def show():
             )
     
     with col_reset:
-        if st.button("🔄 Reset", use_container_width=True):
+        if st.button("Reset", use_container_width=True):
             keys_to_remove = ["calibrated_df", "calibration_config"]
             for key in keys_to_remove:
                 if key in st.session_state:
@@ -366,7 +366,7 @@ def show():
     
     # Instructions to continue
     if "calibrated_df" in st.session_state:
-        st.info("✅ Calibration ready. Continue with 'Truth Table'.")
+        st.info("Calibration ready. Continue with 'Truth Table'.")
 
 
 # Direct execution
